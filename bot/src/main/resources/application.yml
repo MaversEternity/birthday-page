@@ -1,0 +1,4 @@
+bot:
+  token: ${BOT_TOKEN:your_token_here}
+  username: ${BOT_USERNAME:birthday_bot}
+  webapp-url: ${WEBAPP_URL:https://maverseternity.github.io/birthday-page/}

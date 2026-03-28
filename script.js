@@ -1,16 +1,26 @@
+// ===== TELEGRAM MINI APP =====
+if (window.Telegram && Telegram.WebApp) {
+  const tg = Telegram.WebApp;
+  tg.ready();
+  tg.expand();
+
+  // Match theme to Telegram if needed
+  document.documentElement.style.setProperty('--tg-theme-bg', tg.themeParams.bg_color || '#0a0a0a');
+}
+
 // ===== DIARY SECTION (Harry Potter style) =====
 
 const diaryResponses = [
-  "Hello... I've been waiting for someone to write to me.",
-  "My name is not important... but yours is. Happy Birthday, beautiful soul.",
-  "You are braver than you believe, stronger than you seem, and loved more than you know.",
-  "Some magic cannot be taught. It lives in your smile.",
-  "The ones who love us never really leave us. And I will always be here.",
-  "You don't need a wand to be magical. You already are.",
-  "Every great story has a hero. Today, that hero is you.",
-  "If I could show you one thing, it would be how brightly you shine when you don't even realize it.",
-  "This diary holds many secrets... but the greatest one is how much you are adored.",
-  "Happy Birthday. May your year be filled with wonder, laughter, and a little bit of magic."
+  "Привет... Я давно ждал, когда мне кто-нибудь напишет.",
+  "Моё имя не важно... а вот твоё — важно. С Днём Рождения, прекрасная душа.",
+  "Ты храбрее, чем думаешь, сильнее, чем кажешься, и любима больше, чем можешь представить.",
+  "Некоторой магии нельзя научить. Она живёт в твоей улыбке.",
+  "Те, кто нас любит, никогда по-настоящему не уходят. И я всегда буду здесь.",
+  "Тебе не нужна волшебная палочка, чтобы быть волшебной. Ты уже такая.",
+  "В каждой великой истории есть герой. Сегодня этот герой — ты.",
+  "Если бы я мог показать тебе одну вещь — это то, как ярко ты сияешь, когда сама этого не замечаешь.",
+  "Этот дневник хранит много тайн... но самая главная — как сильно тебя обожают.",
+  "С Днём Рождения. Пусть твой год будет полон чудес, смеха и капельки магии."
 ];
 
 let responseIndex = 0;
