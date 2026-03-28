@@ -1,0 +1,779 @@
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Spectral', serif;
+  background: #0a0a0a;
+  color: #f0e6d3;
+  overflow-x: hidden;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  overflow: hidden;
+}
+
+/* Parallax starfield */
+.parallax-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background: transparent;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 160px 30px, #ddd, transparent);
+  background-size: 200px 100px;
+  animation: starScroll 80s linear infinite;
+}
+
+.stars2 {
+  background-image:
+    radial-gradient(1px 1px at 50px 60px, #fff, transparent),
+    radial-gradient(2px 2px at 100px 20px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 70px 90px, #eee, transparent);
+  background-size: 150px 80px;
+  animation-duration: 120s;
+  opacity: 0.6;
+}
+
+.stars3 {
+  background-image:
+    radial-gradient(1px 1px at 30px 50px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 80px 30px, rgba(255,255,255,0.4), transparent);
+  background-size: 250px 120px;
+  animation-duration: 200s;
+  opacity: 0.4;
+}
+
+@keyframes starScroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-title {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  background: linear-gradient(135deg, #f5c842, #ff6b9d, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+  margin-bottom: 1rem;
+}
+
+@keyframes titleGlow {
+  from { filter: brightness(1); text-shadow: 0 0 20px rgba(245, 200, 66, 0.3); }
+  to { filter: brightness(1.2); text-shadow: 0 0 40px rgba(245, 200, 66, 0.6); }
+}
+
+.hero-subtitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: rgba(240, 230, 211, 0.8);
+  animation: fadeInUp 2s ease 0.5s both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.scroll-indicator {
+  margin-top: 3rem;
+  animation: fadeInUp 2s ease 1.5s both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scroll-indicator span {
+  font-size: 0.9rem;
+  color: rgba(240, 230, 211, 0.5);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.scroll-arrow {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid rgba(240, 230, 211, 0.5);
+  border-bottom: 2px solid rgba(240, 230, 211, 0.5);
+  transform: rotate(45deg);
+  animation: bounceArrow 2s ease infinite;
+}
+
+@keyframes bounceArrow {
+  0%, 100% { transform: rotate(45deg) translate(0, 0); }
+  50% { transform: rotate(45deg) translate(5px, 5px); }
+}
+
+/* ===== HARRY POTTER DIARY SECTION ===== */
+.diary-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1207;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.diary-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(139, 90, 30, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(139, 90, 30, 0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Floating candle-like flickers */
+.diary-section::before,
+.diary-section::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #f5c842;
+  box-shadow: 0 0 15px 8px rgba(245, 200, 66, 0.3), 0 0 40px 15px rgba(245, 200, 66, 0.1);
+  animation: candleFlicker 3s ease-in-out infinite alternate;
+}
+
+.diary-section::before {
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.diary-section::after {
+  top: 20%;
+  right: 12%;
+  animation-delay: 1.5s;
+}
+
+@keyframes candleFlicker {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  25% { opacity: 1; transform: scale(1.1); }
+  50% { opacity: 0.7; transform: scale(0.95); }
+  75% { opacity: 0.9; transform: scale(1.05); }
+}
+
+.diary-container {
+  position: relative;
+  z-index: 2;
+  perspective: 1000px;
+}
+
+.diary-book {
+  width: min(500px, 90vw);
+  min-height: 550px;
+  position: relative;
+}
+
+.diary-cover {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #2a1a0a, #1a0f05);
+  border: 3px solid #4a3520;
+  border-radius: 4px 12px 12px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+  transform-origin: left center;
+  z-index: 3;
+  box-shadow:
+    inset 0 0 30px rgba(0,0,0,0.5),
+    4px 4px 15px rgba(0,0,0,0.5),
+    0 0 1px #4a3520;
+}
+
+.diary-cover::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: #4a3520;
+  box-shadow: 4px 0 0 #4a3520;
+}
+
+.diary-cover.open {
+  transform: rotateY(-160deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.diary-cover-text {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 1.5rem;
+  color: #8b6914;
+  text-shadow: 0 0 10px rgba(139, 105, 20, 0.5);
+  letter-spacing: 3px;
+}
+
+.diary-hint {
+  margin-top: 1.5rem;
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: rgba(139, 105, 20, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.diary-pages {
+  width: 100%;
+  min-height: 550px;
+  background:
+    linear-gradient(to right, #d4c5a0 0%, #e8dcc0 5%, #f0e6cc 50%, #e8dcc0 95%, #d4c5a0 100%);
+  border-radius: 2px 10px 10px 2px;
+  box-shadow:
+    inset 0 0 20px rgba(100, 70, 30, 0.2),
+    3px 3px 10px rgba(0,0,0,0.3);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.3s;
+  display: flex;
+}
+
+.diary-pages.visible {
+  opacity: 1;
+}
+
+.diary-page {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  background-image:
+    repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      rgba(139, 105, 20, 0.15) 31px,
+      rgba(139, 105, 20, 0.15) 32px
+    );
+  background-position-y: 8px;
+}
+
+.diary-conversation {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 1rem;
+  max-height: 400px;
+}
+
+.diary-message {
+  margin-bottom: 1.2rem;
+  line-height: 32px;
+  opacity: 0;
+  animation: inkAppear 1.5s ease forwards;
+}
+
+.diary-message.user-msg {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  color: #1a1207;
+}
+
+.diary-message.diary-reply {
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  color: #1a1207;
+  opacity: 0;
+}
+
+/* Ink appearing effect */
+@keyframes inkAppear {
+  0% {
+    opacity: 0;
+    filter: blur(3px);
+    color: transparent;
+    text-shadow: 0 0 15px rgba(26, 18, 7, 0.5);
+  }
+  30% {
+    opacity: 0.5;
+    filter: blur(2px);
+    color: rgba(26, 18, 7, 0.3);
+    text-shadow: 0 0 10px rgba(26, 18, 7, 0.4);
+  }
+  60% {
+    opacity: 0.8;
+    filter: blur(1px);
+    color: rgba(26, 18, 7, 0.7);
+    text-shadow: 0 0 5px rgba(26, 18, 7, 0.2);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    color: #1a1207;
+    text-shadow: none;
+  }
+}
+
+/* Letter-by-letter ink reveal */
+.ink-letter {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(4px);
+  animation: letterReveal 0.4s ease forwards;
+}
+
+@keyframes letterReveal {
+  0% {
+    opacity: 0;
+    filter: blur(4px);
+    color: transparent;
+    text-shadow: 0 0 8px rgba(26, 18, 7, 0.6);
+  }
+  50% {
+    opacity: 0.6;
+    filter: blur(2px);
+    color: rgba(26, 18, 7, 0.5);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    color: #1a1207;
+    text-shadow: none;
+  }
+}
+
+.diary-input-area {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  border-top: 1px solid rgba(139, 105, 20, 0.2);
+  padding-top: 1rem;
+}
+
+.diary-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(139, 105, 20, 0.3);
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.2rem;
+  color: #1a1207;
+  padding: 0.5rem 0.2rem;
+  outline: none;
+  line-height: 32px;
+}
+
+.diary-input::placeholder {
+  color: rgba(26, 18, 7, 0.3);
+  font-style: italic;
+}
+
+.diary-btn {
+  background: linear-gradient(135deg, #4a3520, #2a1a0a);
+  color: #d4c5a0;
+  border: 1px solid #6b4c2a;
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 0.8rem;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.diary-btn:hover {
+  background: linear-gradient(135deg, #6b4c2a, #4a3520);
+  box-shadow: 0 0 10px rgba(139, 105, 20, 0.3);
+}
+
+/* ===== NARUTO & SASUKE SECTION ===== */
+.naruto-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0f1923 0%, #1a2a3a 30%, #ff6a00 70%, #ff4500 100%);
+}
+
+.naruto-parallax-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.naruto-bg {
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(255, 106, 0, 0.3) 0%, transparent 70%);
+}
+
+.naruto-clouds {
+  background-image:
+    radial-gradient(ellipse at 20% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 25%, rgba(255, 255, 255, 0.04) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.03) 0%, transparent 45%);
+  transition: transform 0.1s linear;
+}
+
+.naruto-sun {
+  background: radial-gradient(circle at 50% 85%, rgba(255, 165, 0, 0.4) 0%, rgba(255, 69, 0, 0.15) 30%, transparent 60%);
+}
+
+.bond-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.bond-panel {
+  flex: 1;
+  min-width: 200px;
+  max-width: 280px;
+  transition: transform 0.3s ease;
+}
+
+.character-card {
+  background: rgba(15, 25, 35, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.character-card:hover {
+  transform: translateY(-5px);
+}
+
+.naruto-card {
+  box-shadow: 0 0 25px rgba(255, 165, 0, 0.2);
+}
+
+.naruto-card:hover {
+  box-shadow: 0 0 40px rgba(255, 165, 0, 0.4);
+}
+
+.sasuke-card {
+  box-shadow: 0 0 25px rgba(100, 100, 200, 0.2);
+}
+
+.sasuke-card:hover {
+  box-shadow: 0 0 40px rgba(100, 100, 200, 0.4);
+}
+
+.character-silhouette {
+  width: 120px;
+  height: 150px;
+  margin: 0 auto 1.5rem;
+  border-radius: 8px;
+  position: relative;
+}
+
+.naruto-silhouette {
+  background: linear-gradient(180deg, #ff8c00, #ff6a00);
+  clip-path: polygon(
+    50% 0%, 35% 5%, 20% 0%, 25% 15%, 15% 10%, 22% 25%,
+    10% 20%, 20% 35%, 30% 30%, 25% 40%, 20% 50%, 25% 60%,
+    15% 75%, 25% 70%, 20% 85%, 30% 80%, 35% 95%, 50% 85%,
+    65% 95%, 70% 80%, 80% 85%, 75% 70%, 85% 75%, 75% 60%,
+    80% 50%, 75% 40%, 70% 30%, 80% 35%, 90% 20%, 78% 25%,
+    85% 10%, 75% 15%, 80% 0%, 65% 5%
+  );
+  box-shadow: 0 0 30px rgba(255, 140, 0, 0.5);
+}
+
+.sasuke-silhouette {
+  background: linear-gradient(180deg, #3a3a6e, #1a1a3e);
+  clip-path: polygon(
+    50% 0%, 30% 8%, 20% 2%, 25% 18%, 15% 15%, 20% 30%,
+    15% 45%, 20% 55%, 15% 70%, 22% 75%, 18% 88%, 30% 82%,
+    38% 100%, 50% 90%, 62% 100%, 70% 82%, 82% 88%, 78% 75%,
+    85% 70%, 80% 55%, 85% 45%, 80% 30%, 85% 15%, 75% 18%,
+    80% 2%, 70% 8%
+  );
+  box-shadow: 0 0 30px rgba(100, 100, 200, 0.5);
+}
+
+.character-card h3 {
+  font-family: 'Bangers', cursive;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  margin-bottom: 0.8rem;
+}
+
+.naruto-card h3 {
+  color: #ff8c00;
+  text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+}
+
+.sasuke-card h3 {
+  color: #8888cc;
+  text-shadow: 0 0 10px rgba(100, 100, 200, 0.5);
+}
+
+.quote {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: rgba(240, 230, 211, 0.7);
+  line-height: 1.6;
+}
+
+.bond-center {
+  flex: 1.5;
+  min-width: 250px;
+  max-width: 400px;
+  text-align: center;
+  padding: 2rem;
+}
+
+.bond-symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.bond-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 165, 0, 0.6), rgba(100, 100, 200, 0.6), transparent);
+}
+
+.bond-heart {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #ff8c00, #8888cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: bondPulse 3s ease-in-out infinite;
+}
+
+@keyframes bondPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.bond-title {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, #ff8c00, #ffffff, #8888cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.bond-text {
+  font-size: 1.05rem;
+  color: rgba(240, 230, 211, 0.85);
+  line-height: 1.8;
+  margin-bottom: 0.8rem;
+}
+
+.bond-dedication {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: #f5c842;
+  margin-top: 1.5rem;
+  animation: fadeInUp 1s ease both;
+}
+
+/* Floating leaf particles */
+.leaf-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.leaf {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: rgba(0, 180, 0, 0.6);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  animation: leafFall linear infinite;
+}
+
+@keyframes leafFall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg) translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(40px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg) translateX(-20px);
+    opacity: 0;
+  }
+}
+
+/* ===== FINALE SECTION ===== */
+.finale-section {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, #1a0a2e 0%, #0a0a0f 100%);
+  overflow: hidden;
+}
+
+.finale-parallax {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(2px 2px at 10% 20%, rgba(255, 107, 157, 0.5), transparent),
+    radial-gradient(2px 2px at 30% 60%, rgba(192, 132, 252, 0.4), transparent),
+    radial-gradient(2px 2px at 60% 30%, rgba(245, 200, 66, 0.5), transparent),
+    radial-gradient(2px 2px at 80% 70%, rgba(255, 107, 157, 0.4), transparent),
+    radial-gradient(2px 2px at 50% 90%, rgba(192, 132, 252, 0.3), transparent);
+  background-size: 100% 100%;
+  animation: sparkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes sparkle {
+  from { opacity: 0.5; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.02); }
+}
+
+.finale-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+}
+
+.finale-title {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: clamp(2rem, 6vw, 4rem);
+  background: linear-gradient(135deg, #f5c842, #ff6b9d, #c084fc, #f5c842);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 5s ease infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.finale-message {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  color: rgba(240, 230, 211, 0.9);
+  line-height: 2;
+}
+
+.hearts-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 1.5rem;
+  animation: floatUp linear infinite;
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.5) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.4; }
+  100% {
+    transform: translateY(-80vh) scale(1) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+/* ===== SCROLL REVEAL ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .bond-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .bond-panel {
+    max-width: 100%;
+  }
+
+  .diary-book {
+    min-height: 480px;
+  }
+
+  .diary-page {
+    padding: 1.5rem;
+  }
+
+  .character-silhouette {
+    width: 80px;
+    height: 100px;
+  }
+}
