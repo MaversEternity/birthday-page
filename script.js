@@ -121,13 +121,8 @@ function handleParallax() {
     sun.style.transform = `translateY(${offset}px) scale(${1 + Math.abs(rect.top) * 0.0003})`;
   }
 
-  // Bond panels parallax
-  document.querySelectorAll('[data-parallax-speed]').forEach(el => {
-    const speed = parseFloat(el.dataset.parallaxSpeed);
-    const rect = el.getBoundingClientRect();
-    const centerOffset = (rect.top - window.innerHeight / 2) * speed;
-    el.style.transform = `translateY(${centerOffset}px)`;
-  });
+  // Naruto & Sasuke slide-in on scroll
+  animateBondCharacters();
 
   // Finale sparkle parallax
   const finaleParallax = document.querySelector('.finale-parallax');
@@ -143,9 +138,50 @@ window.addEventListener('scroll', () => {
 });
 
 
+// ===== NARUTO & SASUKE SLIDE-IN =====
+
+function animateBondCharacters() {
+  const section = document.getElementById('naruto');
+  const naruto = document.getElementById('bondNaruto');
+  const sasuke = document.getElementById('bondSasuke');
+  const heart = document.getElementById('embraceHeart');
+  if (!section || !naruto || !sasuke) return;
+
+  const rect = section.getBoundingClientRect();
+  const sectionHeight = section.offsetHeight;
+  const scrollInSection = -rect.top;
+  const animationRange = sectionHeight - window.innerHeight;
+
+  // progress: 0 = just entered, 1 = fully scrolled through
+  const progress = Math.max(0, Math.min(1, scrollInSection / animationRange));
+
+  // Characters start off-screen, slide to center gap of ~30px, then overlap for embrace
+  const slideDistance = window.innerWidth * 0.5 + 60;
+  const meetPoint = 25; // gap when they meet
+
+  // Eased progress for smooth movement
+  const eased = 1 - Math.pow(1 - progress, 3);
+
+  // Naruto: from far left -> center-left
+  const narutoX = -slideDistance + (slideDistance - meetPoint) * eased;
+  naruto.style.transform = `translateX(${narutoX}px)`;
+
+  // Sasuke: from far right -> center-right
+  const sasukeX = slideDistance - (slideDistance - meetPoint) * eased;
+  sasuke.style.transform = `translateX(${sasukeX}px)`;
+
+  // Show heart when they're close enough (progress > 0.85)
+  if (progress > 0.85) {
+    heart.classList.add('visible');
+  } else {
+    heart.classList.remove('visible');
+  }
+
+}
+
 // ===== SCROLL REVEAL =====
 
-const revealElements = document.querySelectorAll('.character-card, .bond-center, .finale-content');
+const revealElements = document.querySelectorAll('.finale-content, .bond-message');
 revealElements.forEach(el => el.classList.add('reveal'));
 
 const revealObserver = new IntersectionObserver((entries) => {

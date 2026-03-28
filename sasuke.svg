@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 350" width="200" height="350">
+  <defs>
+    <linearGradient id="sHairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#0d0d1a"/>
+    </linearGradient>
+    <linearGradient id="sHairHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a2a45"/>
+      <stop offset="100%" stop-color="#1a1a30"/>
+    </linearGradient>
+    <linearGradient id="sSkinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F5E6D0"/>
+      <stop offset="100%" stop-color="#E8D0B5"/>
+    </linearGradient>
+    <linearGradient id="sShirtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f8f8ff"/>
+      <stop offset="50%" stop-color="#e8e8f0"/>
+      <stop offset="100%" stop-color="#d0d0e0"/>
+    </linearGradient>
+    <linearGradient id="sCollarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2C3E6B"/>
+      <stop offset="100%" stop-color="#1a2744"/>
+    </linearGradient>
+    <radialGradient id="sharingan" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000"/>
+      <stop offset="30%" stop-color="#cc0000"/>
+      <stop offset="100%" stop-color="#8B0000"/>
+    </radialGradient>
+    <radialGradient id="sEyeDark" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </radialGradient>
+  </defs>
+
+  <!-- BODY -->
+  <!-- Neck -->
+  <rect x="88" y="135" width="24" height="22" rx="4" fill="url(#sSkinGrad)"/>
+
+  <!-- Shirt body - high collar white/light -->
+  <path d="M58,152 Q58,145 68,145 L132,145 Q142,145 142,152 L146,280 Q146,290 136,290 L64,290 Q54,290 54,280 Z" fill="url(#sShirtGrad)"/>
+
+  <!-- High collar (Uchiha style) -->
+  <path d="M68,145 L68,110 Q68,105 75,105 L80,120 L80,145 Z" fill="url(#sCollarGrad)"/>
+  <path d="M132,145 L132,110 Q132,105 125,105 L120,120 L120,145 Z" fill="url(#sCollarGrad)"/>
+
+  <!-- Shirt opening / chest -->
+  <path d="M80,145 L100,180 L120,145 Z" fill="url(#sSkinGrad)" opacity="0.6"/>
+  <path d="M80,145 L100,180 L120,145" fill="none" stroke="#c0c0d0" stroke-width="1"/>
+
+  <!-- Rope belt (Shippuden) -->
+  <path d="M54,210 Q100,220 146,210" fill="none" stroke="#c8b8ff" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="100" cy="215" rx="8" ry="5" fill="#c8b8ff"/>
+  <!-- Rope bow hanging -->
+  <path d="M96,220 L90,245 Q88,250 92,250 L96,235" fill="none" stroke="#c8b8ff" stroke-width="3" stroke-linecap="round"/>
+  <path d="M104,220 L110,245 Q112,250 108,250 L104,235" fill="none" stroke="#c8b8ff" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ARMS -->
+  <!-- Left arm -->
+  <path d="M58,155 L33,200 L38,205 L53,172 L53,235 L60,235 L58,170 Z" fill="url(#sShirtGrad)"/>
+  <!-- Left hand -->
+  <ellipse cx="35" cy="205" rx="10" ry="8" fill="url(#sSkinGrad)"/>
+
+  <!-- Right arm -->
+  <path d="M142,155 L167,200 L162,205 L147,172 L147,235 L140,235 L142,170 Z" fill="url(#sShirtGrad)"/>
+  <!-- Right hand -->
+  <ellipse cx="165" cy="205" rx="10" ry="8" fill="url(#sSkinGrad)"/>
+
+  <!-- LEGS -->
+  <!-- Left leg -->
+  <path d="M64,285 L60,340 L78,340 L82,285 Z" fill="#2C3E6B"/>
+  <!-- Right leg -->
+  <path d="M118,285 L122,340 L140,340 L136,285 Z" fill="#2C3E6B"/>
+  <!-- Sandals -->
+  <rect x="56" y="336" width="24" height="10" rx="3" fill="#1a1a2e"/>
+  <rect x="118" y="336" width="24" height="10" rx="3" fill="#1a1a2e"/>
+
+  <!-- HEAD -->
+  <!-- Hair back volume -->
+  <ellipse cx="100" cy="70" rx="52" ry="48" fill="url(#sHairGrad)"/>
+
+  <!-- Back spikes (Sasuke's signature duck-butt hair) -->
+  <polygon points="130,40 145,15 155,50" fill="url(#sHairGrad)"/>
+  <polygon points="140,50 160,25 165,60" fill="url(#sHairGrad)"/>
+  <polygon points="145,60 170,40 168,72" fill="url(#sHairGrad)"/>
+  <polygon points="120,35 135,8 148,40" fill="url(#sHairGrad)"/>
+  <polygon points="110,30 120,5 132,32" fill="#1a1a30"/>
+
+  <!-- Face -->
+  <ellipse cx="100" cy="92" rx="40" ry="42" fill="url(#sSkinGrad)"/>
+
+  <!-- Headband -->
+  <rect x="58" y="62" width="84" height="16" rx="3" fill="#2C3E6B"/>
+  <!-- Metal plate -->
+  <rect x="78" y="63" width="44" height="14" rx="2" fill="#C0C0C0"/>
+  <rect x="80" y="65" width="40" height="10" rx="1" fill="#A8A8A8"/>
+  <!-- Leaf symbol -->
+  <path d="M100,67 Q95,70 97,75 Q100,72 103,75 Q105,70 100,67 Z" fill="#2C3E6B" stroke="#2C3E6B" stroke-width="0.5"/>
+  <line x1="100" y1="67" x2="100" y2="75" stroke="#2C3E6B" stroke-width="1"/>
+  <!-- Headband tails -->
+  <path d="M58,68 L40,78 L42,83 L60,74" fill="#2C3E6B"/>
+  <path d="M142,68 L160,78 L158,83 L140,74" fill="#2C3E6B"/>
+
+  <!-- Front hair bangs - covering sides of face -->
+  <!-- Left bangs -->
+  <path d="M55,62 Q58,100 70,120 Q68,90 65,70 Z" fill="url(#sHairGrad)"/>
+  <path d="M60,58 Q65,95 75,115 Q72,85 68,65 Z" fill="url(#sHairHighlight)"/>
+  <!-- Right bangs (shorter) -->
+  <path d="M145,62 Q142,95 133,110 Q135,85 138,68 Z" fill="url(#sHairGrad)"/>
+
+  <!-- Top hair covering forehead -->
+  <path d="M58,65 Q70,45 100,50 Q130,45 142,65 Q130,55 100,58 Q70,55 58,65 Z" fill="url(#sHairGrad)"/>
+
+  <!-- Eyes - intense dark / one Sharingan -->
+  <!-- Left eye (dark) -->
+  <ellipse cx="82" cy="92" rx="10" ry="7.5" fill="white"/>
+  <ellipse cx="84" cy="92" rx="6" ry="6" fill="url(#sEyeDark)"/>
+  <circle cx="84" cy="91" r="3" fill="#0a0a0a"/>
+  <circle cx="85.5" cy="89.5" r="1.2" fill="rgba(255,255,255,0.7)"/>
+
+  <!-- Right eye (Sharingan) -->
+  <ellipse cx="118" cy="92" rx="10" ry="7.5" fill="white"/>
+  <circle cx="116" cy="92" r="6" fill="url(#sharingan)"/>
+  <circle cx="116" cy="92" r="2" fill="#0a0a0a"/>
+  <!-- Tomoe marks -->
+  <circle cx="116" cy="87.5" r="1" fill="#0a0a0a"/>
+  <circle cx="112" cy="94.5" r="1" fill="#0a0a0a"/>
+  <circle cx="120" cy="94.5" r="1" fill="#0a0a0a"/>
+  <circle cx="117" cy="90" r="1" fill="rgba(255,255,255,0.5)"/>
+
+  <!-- Eyebrows - sharper, more serious -->
+  <path d="M72,82 Q82,76 92,81" fill="none" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M108,81 Q118,76 128,82" fill="none" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Nose -->
+  <path d="M97,100 Q100,106 103,100" fill="none" stroke="#C4A882" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Mouth - slight smirk / stoic -->
+  <path d="M90,116 Q100,120 110,116" fill="none" stroke="#B08870" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Uchiha clan crest on back (visible slightly) -->
+  <g transform="translate(100, 250)" opacity="0.3">
+    <!-- Fan shape -->
+    <path d="M-10,-15 Q0,-25 10,-15 L10,0 Q0,-5 -10,0 Z" fill="#cc0000"/>
+    <path d="M-10,0 Q0,-5 10,0 L10,12 Q0,5 -10,12 Z" fill="white"/>
+  </g>
+
+  <!-- Subtle glow -->
+  <ellipse cx="100" cy="175" rx="70" ry="120" fill="rgba(100,100,200,0.06)"/>
+</svg>

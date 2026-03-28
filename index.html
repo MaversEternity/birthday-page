@@ -55,33 +55,27 @@
     <div class="naruto-parallax-layer naruto-clouds"></div>
     <div class="naruto-parallax-layer naruto-sun"></div>
 
-    <div class="bond-content">
-      <div class="bond-panel panel-left" data-parallax-speed="0.3">
-        <div class="character-card naruto-card">
-          <div class="character-silhouette naruto-silhouette"></div>
-          <h3>Наруто</h3>
-          <p class="quote">"Я не собираюсь убегать. Я никогда не отступаю от своих слов!"</p>
-        </div>
+    <div class="bond-message" id="bondMessage">
+      <h2 class="bond-title">Пусть желания исполняются</h2>
+      <p class="bond-text">Наруто и Саске как пара — это канон.</p>
+      <p class="bond-text bond-dedication">И это не обсуждается.</p>
+    </div>
+
+    <div class="bond-stage">
+      <!-- Naruto slides from left -->
+      <div class="bond-character bond-naruto" id="bondNaruto">
+        <img src="naruto.svg" alt="Наруто" class="character-drawing">
+        <p class="character-name naruto-name">Наруто</p>
       </div>
 
-      <div class="bond-center" data-parallax-speed="0.1">
-        <div class="bond-symbol">
-          <div class="bond-line"></div>
-          <div class="bond-heart">絆</div>
-          <div class="bond-line"></div>
-        </div>
-        <h2 class="bond-title">Нерушимая связь</h2>
-        <p class="bond-text">Как Наруто и Саске — соперники, друзья и родственные души. Какое бы расстояние ни разделяло — связь не разорвать.</p>
-        <p class="bond-text bond-dedication">Как и у нас.</p>
+      <!-- Sasuke slides from right -->
+      <div class="bond-character bond-sasuke" id="bondSasuke">
+        <img src="sasuke.svg" alt="Саске" class="character-drawing">
+        <p class="character-name sasuke-name">Саске</p>
       </div>
 
-      <div class="bond-panel panel-right" data-parallax-speed="0.3">
-        <div class="character-card sasuke-card">
-          <div class="character-silhouette sasuke-silhouette"></div>
-          <h3>Саске</h3>
-          <p class="quote">"Я давно закрыл глаза... Моя единственная цель — во тьме."</p>
-        </div>
-      </div>
+      <!-- Heart appears when they meet -->
+      <div class="bond-embrace-heart" id="embraceHeart">❤️</div>
     </div>
 
     <div class="leaf-particles" id="leafParticles"></div>

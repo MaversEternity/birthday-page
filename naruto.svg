@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 350" width="200" height="350">
+  <defs>
+    <linearGradient id="nHairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FF8C00"/>
+    </linearGradient>
+    <linearGradient id="nSkinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFCC99"/>
+      <stop offset="100%" stop-color="#F0B07A"/>
+    </linearGradient>
+    <linearGradient id="nJacketGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF6A00"/>
+      <stop offset="100%" stop-color="#E85D00"/>
+    </linearGradient>
+    <radialGradient id="nEyeBlue" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#5BC0EB"/>
+      <stop offset="100%" stop-color="#2980B9"/>
+    </radialGradient>
+  </defs>
+
+  <!-- BODY -->
+  <!-- Neck -->
+  <rect x="88" y="135" width="24" height="20" rx="4" fill="url(#nSkinGrad)"/>
+
+  <!-- Jacket body -->
+  <path d="M60,155 Q60,148 70,148 L130,148 Q140,148 140,155 L145,280 Q145,290 135,290 L65,290 Q55,290 55,280 Z" fill="url(#nJacketGrad)"/>
+
+  <!-- Jacket zipper line -->
+  <line x1="100" y1="155" x2="100" y2="285" stroke="#CC5500" stroke-width="2"/>
+
+  <!-- Jacket collar -->
+  <path d="M75,148 L100,165 L125,148" fill="none" stroke="#CC5500" stroke-width="2.5"/>
+
+  <!-- White collar/undershirt visible -->
+  <path d="M85,148 L100,160 L115,148 Z" fill="#f0f0f0"/>
+
+  <!-- Orange collar flaps -->
+  <path d="M70,148 Q75,155 85,148 Z" fill="#FF7B00"/>
+  <path d="M115,148 Q125,155 130,148 Z" fill="#FF7B00"/>
+
+  <!-- ARMS -->
+  <!-- Left arm -->
+  <path d="M60,155 L35,200 L40,205 L55,170 L55,240 L62,240 L60,170 Z" fill="url(#nJacketGrad)"/>
+  <!-- Left hand -->
+  <ellipse cx="37" cy="205" rx="10" ry="8" fill="url(#nSkinGrad)"/>
+
+  <!-- Right arm -->
+  <path d="M140,155 L165,200 L160,205 L145,170 L145,240 L138,240 L140,170 Z" fill="url(#nJacketGrad)"/>
+  <!-- Right hand -->
+  <ellipse cx="163" cy="205" rx="10" ry="8" fill="url(#nSkinGrad)"/>
+
+  <!-- LEGS -->
+  <!-- Left leg -->
+  <path d="M65,285 L62,340 L80,340 L82,285 Z" fill="#2C3E6B"/>
+  <!-- Right leg -->
+  <path d="M118,285 L120,340 L138,340 L135,285 Z" fill="#2C3E6B"/>
+  <!-- Sandals -->
+  <rect x="58" y="336" width="24" height="10" rx="3" fill="#2a1a0a"/>
+  <rect x="116" y="336" width="24" height="10" rx="3" fill="#2a1a0a"/>
+
+  <!-- HEAD -->
+  <!-- Hair back spikes -->
+  <polygon points="40,60 55,85 48,50" fill="url(#nHairGrad)"/>
+  <polygon points="30,75 55,95 42,62" fill="url(#nHairGrad)"/>
+  <polygon points="155,55 145,85 160,48" fill="url(#nHairGrad)"/>
+  <polygon points="170,70 145,90 162,58" fill="url(#nHairGrad)"/>
+
+  <!-- Hair base / main volume -->
+  <ellipse cx="100" cy="75" rx="55" ry="50" fill="url(#nHairGrad)"/>
+
+  <!-- Top spikes -->
+  <polygon points="70,30 80,60 60,50" fill="url(#nHairGrad)"/>
+  <polygon points="90,15 95,55 78,38" fill="url(#nHairGrad)"/>
+  <polygon points="110,12 105,55 120,35" fill="url(#nHairGrad)"/>
+  <polygon points="130,25 120,58 140,45" fill="url(#nHairGrad)"/>
+  <polygon points="100,8 97,50 108,42" fill="#FFD700"/>
+
+  <!-- Face -->
+  <ellipse cx="100" cy="95" rx="40" ry="42" fill="url(#nSkinGrad)"/>
+
+  <!-- Headband -->
+  <rect x="58" y="62" width="84" height="18" rx="3" fill="#2C3E6B"/>
+  <!-- Metal plate -->
+  <rect x="78" y="64" width="44" height="14" rx="2" fill="#C0C0C0"/>
+  <rect x="80" y="66" width="40" height="10" rx="1" fill="#A8A8A8"/>
+  <!-- Leaf symbol -->
+  <path d="M100,68 Q95,71 97,76 Q100,73 103,76 Q105,71 100,68 Z" fill="#2C3E6B" stroke="#2C3E6B" stroke-width="0.5"/>
+  <line x1="100" y1="68" x2="100" y2="76" stroke="#2C3E6B" stroke-width="1"/>
+  <!-- Headband tails -->
+  <path d="M58,70 L40,80 L42,85 L60,76" fill="#2C3E6B"/>
+  <path d="M142,70 L160,80 L158,85 L140,76" fill="#2C3E6B"/>
+
+  <!-- Eyes -->
+  <!-- Left eye -->
+  <ellipse cx="82" cy="93" rx="10" ry="8" fill="white"/>
+  <ellipse cx="84" cy="93" rx="6" ry="6" fill="url(#nEyeBlue)"/>
+  <circle cx="85" cy="92" r="3" fill="#1a1a2e"/>
+  <circle cx="86" cy="90" r="1.2" fill="white"/>
+  <!-- Right eye -->
+  <ellipse cx="118" cy="93" rx="10" ry="8" fill="white"/>
+  <ellipse cx="116" cy="93" rx="6" ry="6" fill="url(#nEyeBlue)"/>
+  <circle cx="115" cy="92" r="3" fill="#1a1a2e"/>
+  <circle cx="116" cy="90" r="1.2" fill="white"/>
+
+  <!-- Eyebrows -->
+  <path d="M72,83 Q82,78 92,83" fill="none" stroke="#CC8800" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M108,83 Q118,78 128,83" fill="none" stroke="#CC8800" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Whisker marks -->
+  <!-- Left cheek -->
+  <line x1="55" y1="98" x2="75" y2="100" stroke="#CC8844" stroke-width="1.2" opacity="0.6"/>
+  <line x1="55" y1="103" x2="75" y2="105" stroke="#CC8844" stroke-width="1.2" opacity="0.6"/>
+  <line x1="55" y1="108" x2="75" y2="110" stroke="#CC8844" stroke-width="1.2" opacity="0.6"/>
+  <!-- Right cheek -->
+  <line x1="125" y1="100" x2="145" y2="98" stroke="#CC8844" stroke-width="1.2" opacity="0.6"/>
+  <line x1="125" y1="105" x2="145" y2="103" stroke="#CC8844" stroke-width="1.2" opacity="0.6"/>
+  <line x1="125" y1="110" x2="145" y2="108" stroke="#CC8844" stroke-width="1.2" opacity="0.6"/>
+
+  <!-- Nose -->
+  <path d="M97,102 Q100,107 103,102" fill="none" stroke="#D4956A" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Mouth - confident smile -->
+  <path d="M88,118 Q100,128 112,118" fill="none" stroke="#CC7755" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Glow effect -->
+  <ellipse cx="100" cy="175" rx="70" ry="120" fill="rgba(255,140,0,0.08)"/>
+</svg>

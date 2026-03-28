@@ -421,8 +421,9 @@ body {
 /* ===== NARUTO & SASUKE SECTION ===== */
 .naruto-section {
   position: relative;
-  min-height: 100vh;
+  min-height: 150vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -452,147 +453,101 @@ body {
   background: radial-gradient(circle at 50% 85%, rgba(255, 165, 0, 0.4) 0%, rgba(255, 69, 0, 0.15) 30%, transparent 60%);
 }
 
-.bond-content {
+/* Stage for the slide-in animation */
+.bond-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.bond-character {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: none;
+  will-change: transform;
+}
+
+.bond-naruto {
+  transform: translateX(-100vw);
+}
+
+.bond-sasuke {
+  transform: translateX(100vw);
+}
+
+.character-drawing {
+  width: 160px;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.3));
+}
+
+.bond-sasuke .character-drawing {
+  filter: drop-shadow(0 0 20px rgba(100, 100, 200, 0.3));
+}
+
+.character-name {
+  font-family: 'Russo One', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.naruto-name {
+  color: #ff8c00;
+  text-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
+}
+
+.sasuke-name {
+  color: #8888cc;
+  text-shadow: 0 0 15px rgba(100, 100, 200, 0.5);
+}
+
+/* Heart that appears on embrace */
+.bond-embrace-heart {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 3;
+  filter: drop-shadow(0 0 20px rgba(255, 100, 100, 0.8));
+}
+
+.bond-embrace-heart.visible {
+  opacity: 1;
+  transform: scale(1);
+  animation: heartBeat 1s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.15); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+}
+
+/* Message above the stage — appears first on scroll */
+.bond-message {
   position: relative;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  padding: 2rem;
-  max-width: 1200px;
-  width: 100%;
-  flex-wrap: wrap;
-}
-
-.bond-panel {
-  flex: 1;
-  min-width: 200px;
-  max-width: 280px;
-  transition: transform 0.3s ease;
-}
-
-.character-card {
-  background: rgba(15, 25, 35, 0.8);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 2rem;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  padding: 4rem 2rem 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.character-card:hover {
-  transform: translateY(-5px);
-}
-
-.naruto-card {
-  box-shadow: 0 0 25px rgba(255, 165, 0, 0.2);
-}
-
-.naruto-card:hover {
-  box-shadow: 0 0 40px rgba(255, 165, 0, 0.4);
-}
-
-.sasuke-card {
-  box-shadow: 0 0 25px rgba(100, 100, 200, 0.2);
-}
-
-.sasuke-card:hover {
-  box-shadow: 0 0 40px rgba(100, 100, 200, 0.4);
-}
-
-.character-silhouette {
-  width: 120px;
-  height: 150px;
-  margin: 0 auto 1.5rem;
-  border-radius: 8px;
-  position: relative;
-}
-
-.naruto-silhouette {
-  background: linear-gradient(180deg, #ff8c00, #ff6a00);
-  clip-path: polygon(
-    50% 0%, 35% 5%, 20% 0%, 25% 15%, 15% 10%, 22% 25%,
-    10% 20%, 20% 35%, 30% 30%, 25% 40%, 20% 50%, 25% 60%,
-    15% 75%, 25% 70%, 20% 85%, 30% 80%, 35% 95%, 50% 85%,
-    65% 95%, 70% 80%, 80% 85%, 75% 70%, 85% 75%, 75% 60%,
-    80% 50%, 75% 40%, 70% 30%, 80% 35%, 90% 20%, 78% 25%,
-    85% 10%, 75% 15%, 80% 0%, 65% 5%
-  );
-  box-shadow: 0 0 30px rgba(255, 140, 0, 0.5);
-}
-
-.sasuke-silhouette {
-  background: linear-gradient(180deg, #3a3a6e, #1a1a3e);
-  clip-path: polygon(
-    50% 0%, 30% 8%, 20% 2%, 25% 18%, 15% 15%, 20% 30%,
-    15% 45%, 20% 55%, 15% 70%, 22% 75%, 18% 88%, 30% 82%,
-    38% 100%, 50% 90%, 62% 100%, 70% 82%, 82% 88%, 78% 75%,
-    85% 70%, 80% 55%, 85% 45%, 80% 30%, 85% 15%, 75% 18%,
-    80% 2%, 70% 8%
-  );
-  box-shadow: 0 0 30px rgba(100, 100, 200, 0.5);
-}
-
-.character-card h3 {
-  font-family: 'Russo One', sans-serif;
-  font-size: 1.8rem;
-  letter-spacing: 3px;
-  margin-bottom: 0.8rem;
-}
-
-.naruto-card h3 {
-  color: #ff8c00;
-  text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
-}
-
-.sasuke-card h3 {
-  color: #8888cc;
-  text-shadow: 0 0 10px rgba(100, 100, 200, 0.5);
-}
-
-.quote {
-  font-style: italic;
-  font-size: 0.9rem;
-  color: rgba(240, 230, 211, 0.7);
-  line-height: 1.6;
-}
-
-.bond-center {
-  flex: 1.5;
-  min-width: 250px;
-  max-width: 400px;
-  text-align: center;
-  padding: 2rem;
-}
-
-.bond-symbol {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.bond-line {
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 165, 0, 0.6), rgba(100, 100, 200, 0.6), transparent);
-}
-
-.bond-heart {
-  font-size: 2.5rem;
-  background: linear-gradient(135deg, #ff8c00, #8888cc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: bondPulse 3s ease-in-out infinite;
-}
-
-@keyframes bondPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+.bond-message.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .bond-title {
@@ -607,7 +562,7 @@ body {
 }
 
 .bond-text {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   color: rgba(240, 230, 211, 0.85);
   line-height: 1.8;
   margin-bottom: 0.8rem;
@@ -617,8 +572,7 @@ body {
   font-family: 'Caveat', cursive;
   font-size: 1.5rem;
   color: #f5c842;
-  margin-top: 1.5rem;
-  animation: fadeInUp 1s ease both;
+  margin-top: 1rem;
 }
 
 /* Floating leaf particles */
