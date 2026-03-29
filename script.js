@@ -244,11 +244,22 @@ function createHearts() {
   }, 600);
 }
 
-// Only create hearts when finale section is in view
+// Only create hearts when finale section is in view + autoplay music
+let musicStarted = false;
+const birthdaySong = document.getElementById('birthdaySong');
+
 const finaleObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       createHearts();
+      // Autoplay music
+      if (!musicStarted && birthdaySong) {
+        birthdaySong.volume = 0.5;
+        birthdaySong.play().catch(() => {
+          // Autoplay blocked — will play on first button click
+        });
+        musicStarted = true;
+      }
       finaleObserver.disconnect();
     }
   });
@@ -256,6 +267,199 @@ const finaleObserver = new IntersectionObserver((entries) => {
 
 const finaleSection = document.getElementById('finale');
 if (finaleSection) finaleObserver.observe(finaleSection);
+
+
+// ===== FIREWORKS ENGINE =====
+
+const canvas = document.getElementById('fireworksCanvas');
+const ctx = canvas ? canvas.getContext('2d') : null;
+const particles = [];
+const rockets = [];
+let fireworkIntensity = 0;
+
+function resizeCanvas() {
+  if (!canvas) return;
+  const section = document.getElementById('finale');
+  canvas.width = section.offsetWidth;
+  canvas.height = section.offsetHeight;
+}
+
+if (canvas) {
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+}
+
+class Particle {
+  constructor(x, y, color) {
+    this.x = x;
+    this.y = y;
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 1 + Math.random() * 5;
+    this.vx = Math.cos(angle) * speed;
+    this.vy = Math.sin(angle) * speed;
+    this.alpha = 1;
+    this.decay = 0.01 + Math.random() * 0.02;
+    this.color = color;
+    this.size = 1.5 + Math.random() * 2;
+    this.gravity = 0.03;
+    this.trail = [];
+  }
+
+  update() {
+    this.trail.push({ x: this.x, y: this.y, alpha: this.alpha });
+    if (this.trail.length > 5) this.trail.shift();
+    this.vy += this.gravity;
+    this.x += this.vx;
+    this.y += this.vy;
+    this.vx *= 0.99;
+    this.alpha -= this.decay;
+  }
+
+  draw(ctx) {
+    // Draw trail
+    for (let i = 0; i < this.trail.length; i++) {
+      const t = this.trail[i];
+      ctx.beginPath();
+      ctx.arc(t.x, t.y, this.size * 0.5, 0, Math.PI * 2);
+      ctx.fillStyle = this.color.replace('1)', `${t.alpha * 0.3})`);
+      ctx.fill();
+    }
+    // Draw particle
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color.replace('1)', `${this.alpha})`);
+    ctx.fill();
+    // Glow
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+    ctx.fillStyle = this.color.replace('1)', `${this.alpha * 0.15})`);
+    ctx.fill();
+  }
+}
+
+class Rocket {
+  constructor(x, targetY) {
+    this.x = x;
+    this.y = canvas.height;
+    this.targetY = targetY;
+    this.vy = -(6 + Math.random() * 4);
+    this.alpha = 1;
+    this.trail = [];
+    this.exploded = false;
+  }
+
+  update() {
+    this.trail.push({ x: this.x, y: this.y });
+    if (this.trail.length > 8) this.trail.shift();
+    this.y += this.vy;
+    this.vy += 0.05;
+
+    if (this.vy >= 0 || this.y <= this.targetY) {
+      this.explode();
+      this.exploded = true;
+    }
+  }
+
+  draw(ctx) {
+    // Rocket trail
+    for (let i = 0; i < this.trail.length; i++) {
+      const t = this.trail[i];
+      ctx.beginPath();
+      ctx.arc(t.x, t.y, 2, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 220, 150, ${i / this.trail.length * 0.6})`;
+      ctx.fill();
+    }
+    // Rocket head
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+    ctx.fillStyle = '#fff';
+    ctx.fill();
+  }
+
+  explode() {
+    const colors = [
+      'rgba(255, 107, 157, 1)',
+      'rgba(245, 200, 66, 1)',
+      'rgba(192, 132, 252, 1)',
+      'rgba(100, 200, 255, 1)',
+      'rgba(255, 165, 0, 1)',
+      'rgba(0, 255, 150, 1)',
+      'rgba(255, 80, 80, 1)',
+    ];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const count = 40 + Math.floor(Math.random() * 40);
+    for (let i = 0; i < count; i++) {
+      particles.push(new Particle(this.x, this.y, color));
+    }
+  }
+}
+
+function launchFireworks(count) {
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const x = canvas.width * 0.15 + Math.random() * canvas.width * 0.7;
+      const targetY = canvas.height * 0.1 + Math.random() * canvas.height * 0.4;
+      rockets.push(new Rocket(x, targetY));
+    }, i * (80 + Math.random() * 150));
+  }
+}
+
+function animateFireworks() {
+  if (!ctx) return;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Update & draw rockets
+  for (let i = rockets.length - 1; i >= 0; i--) {
+    rockets[i].update();
+    if (!rockets[i].exploded) {
+      rockets[i].draw(ctx);
+    } else {
+      rockets.splice(i, 1);
+    }
+  }
+
+  // Update & draw particles
+  for (let i = particles.length - 1; i >= 0; i--) {
+    particles[i].update();
+    if (particles[i].alpha <= 0) {
+      particles.splice(i, 1);
+    } else {
+      particles[i].draw(ctx);
+    }
+  }
+
+  requestAnimationFrame(animateFireworks);
+}
+
+if (canvas) animateFireworks();
+
+// Salute button
+const saluteBtn = document.getElementById('saluteBtn');
+let clickCount = 0;
+
+if (saluteBtn) {
+  saluteBtn.addEventListener('click', () => {
+    clickCount++;
+
+    // Start music if autoplay was blocked
+    if (birthdaySong && birthdaySong.paused) {
+      birthdaySong.volume = 0.5;
+      birthdaySong.play().catch(() => {});
+    }
+
+    // More clicks = more fireworks
+    const count = Math.min(3 + clickCount * 2, 25);
+    launchFireworks(count);
+
+    // Screen shake on heavy firepower
+    if (clickCount > 5) {
+      document.getElementById('finale').style.animation = 'screenShake 0.3s ease';
+      setTimeout(() => {
+        document.getElementById('finale').style.animation = '';
+      }, 300);
+    }
+  });
+}
 
 
 // ===== SMOOTH SECTION TRANSITIONS =====
