@@ -42,7 +42,7 @@ public class BirthdayBot implements SpringLongPollingBot, LongPollingSingleThrea
         String text = update.getMessage().getText();
 
         switch (text) {
-            case "/start" -> sendMagicalInvitation(chatId);
+            case String s when s.startsWith("/start") -> sendMagicalInvitation(chatId);
             case "/chatid" -> send(chatId, "Твой chat ID: `%d`".formatted(chatId));
             default -> send(chatId, "Отправь /start, чтобы получить волшебное письмо.");
         }
