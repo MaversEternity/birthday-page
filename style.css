@@ -8,6 +8,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* Fix iOS viewport height */
+  height: -webkit-fill-available;
 }
 
 body {
@@ -20,7 +22,7 @@ body {
 /* ===== HERO SECTION ===== */
 .hero {
   position: relative;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,7 +139,7 @@ body {
 /* ===== HARRY POTTER DIARY SECTION ===== */
 .diary-section {
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -457,7 +459,7 @@ body {
 .bond-stage {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -674,6 +676,43 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 1;
+}
+
+.song-loader {
+  position: relative;
+  z-index: 3;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.song-loader-text {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: rgba(240, 230, 211, 0.7);
+  margin-bottom: 0.8rem;
+}
+
+.progress-bar-track {
+  width: min(300px, 70vw);
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.progress-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #f5c842, #ff6b9d, #c084fc);
+  background-size: 200% 100%;
+  animation: gradientShift 2s ease infinite;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.song-loader.hidden {
+  display: none;
 }
 
 .salute-btn {

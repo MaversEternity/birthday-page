@@ -244,9 +244,45 @@ function createHearts() {
   }, 600);
 }
 
-// Only create hearts when finale section is in view + autoplay music
+// Lazy-load song with progress tracking
 let musicStarted = false;
+let songReady = false;
 const birthdaySong = document.getElementById('birthdaySong');
+const songLoader = document.getElementById('songLoader');
+const progressFill = document.getElementById('progressFill');
+const saluteBtn = document.getElementById('saluteBtn');
+
+window.addEventListener('load', () => {
+  if (!birthdaySong) return;
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'song.mp3', true);
+  xhr.responseType = 'blob';
+
+  xhr.onprogress = (e) => {
+    if (e.lengthComputable && progressFill) {
+      const percent = (e.loaded / e.total) * 100;
+      progressFill.style.width = percent + '%';
+    }
+  };
+
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      const blob = xhr.response;
+      birthdaySong.src = URL.createObjectURL(blob);
+      songReady = true;
+      if (songLoader) songLoader.classList.add('hidden');
+      if (saluteBtn) saluteBtn.style.display = '';
+    }
+  };
+
+  xhr.onerror = () => {
+    if (songLoader) songLoader.classList.add('hidden');
+    if (saluteBtn) saluteBtn.style.display = '';
+  };
+
+  xhr.send();
+});
 
 const finaleObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {

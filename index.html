@@ -88,11 +88,17 @@
     <div class="finale-content">
       <h2 class="finale-title">Happy birthday, Love!</h2>
       <p class="finale-message">You bring joy around.<br>You are supergirl:)</p>
-      <button class="salute-btn" id="saluteBtn">🎆 Салют!</button>
+      <div class="song-loader" id="songLoader">
+        <p class="song-loader-text">Загружаю магию...</p>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+      </div>
+      <button class="salute-btn" id="saluteBtn" style="display:none">🎆 Салют!</button>
       <p class="salute-hint">Жми ещё!</p>
       <div class="hearts-container" id="heartsContainer"></div>
     </div>
-    <audio id="birthdaySong" src="song.mp3" preload="auto" loop></audio>
+    <audio id="birthdaySong" preload="none" loop></audio>
   </section>
 
   <script src="script.js"></script>
