@@ -481,10 +481,11 @@ if (saluteBtn) {
   saluteBtn.addEventListener('click', () => {
     clickCount++;
 
-    // Start music if autoplay was blocked
-    if (birthdaySong && birthdaySong.paused) {
+    // Start music on click (autoplay is blocked on most browsers)
+    if (birthdaySong && songReady && birthdaySong.paused) {
       birthdaySong.volume = 0.5;
       birthdaySong.play().catch(() => {});
+      musicStarted = true;
     }
 
     // More clicks = more fireworks
