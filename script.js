@@ -273,6 +273,7 @@ window.addEventListener('load', () => {
       songReady = true;
       if (songLoader) songLoader.classList.add('hidden');
       if (saluteBtn) saluteBtn.style.display = '';
+      tryPlaySong();
     }
   };
 
@@ -284,18 +285,22 @@ window.addEventListener('load', () => {
   xhr.send();
 });
 
+let finaleReached = false;
+
+function tryPlaySong() {
+  if (!musicStarted && songReady && finaleReached && birthdaySong) {
+    birthdaySong.volume = 0.5;
+    birthdaySong.play().catch(() => {});
+    musicStarted = true;
+  }
+}
+
 const finaleObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       createHearts();
-      // Autoplay music
-      if (!musicStarted && birthdaySong) {
-        birthdaySong.volume = 0.5;
-        birthdaySong.play().catch(() => {
-          // Autoplay blocked — will play on first button click
-        });
-        musicStarted = true;
-      }
+      finaleReached = true;
+      tryPlaySong();
       finaleObserver.disconnect();
     }
   });
@@ -470,7 +475,6 @@ function animateFireworks() {
 if (canvas) animateFireworks();
 
 // Salute button
-const saluteBtn = document.getElementById('saluteBtn');
 let clickCount = 0;
 
 if (saluteBtn) {
